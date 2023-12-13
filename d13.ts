@@ -1,4 +1,4 @@
-type Expand<
+type DayCounter<
     Start extends number,
     End extends number,
     FoundLowerBound extends boolean = false,
@@ -7,14 +7,16 @@ type Expand<
 > = FoundLowerBound extends true
     ? Cur["length"] extends End
         ? [...Acc, Cur["length"]][number]
-        : Expand<Start, End, true, [...Cur, number], [...Acc, Cur["length"]]>
+        : DayCounter<
+              Start,
+              End,
+              true,
+              [...Cur, number],
+              [...Acc, Cur["length"]]
+          >
     : Cur["length"] extends Start
-    ? Expand<Start, End, true, [...Cur, number], [...Acc, Cur["length"]]>
-    : Expand<Start, End, false, [...Cur, number], Acc>;
-
-type DayCounter<Start extends number, End extends number> =
-    | Expand<Start, End>
-    | Start;
+    ? DayCounter<Start, End, true, [...Cur, number], [...Acc, Cur["length"]]>
+    : DayCounter<Start, End, false, [...Cur, number], Acc>;
 
 // Simplified Version using Exclude...
 type Expand0<
