@@ -8,7 +8,7 @@ type DeepReadonlyArray<
           readonly [...Acc, SantaListProtector<Cur[Acc["length"]]>]
       >;
 
-type SantaListProtector<T> = T extends Record<string, unknown>
+export type SantaListProtector<T> = T extends Record<string, unknown>
     ? {
           readonly [Prop in keyof T]: SantaListProtector<T[Prop]>;
       }

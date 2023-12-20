@@ -9,7 +9,15 @@ type Results = {
     "🖐🏾": R<"🖐🏾", "✌🏽", "👊🏻">;
     "✌🏽": R<"✌🏽", "👊🏻", "🖐🏾">;
 };
-type WhoWins<
+
+type ResultsTest = ["👊🏻", "🖐🏾", "✌🏽"] | ["🖐🏾", "✌🏽", "👊🏻"] | ["✌🏽", "👊🏻", "🖐🏾"];
+type GetType<T extends ResultsTest[number]> = {
+    [Prop in keyof ResultsTest]: Prop extends T ? ResultsTest[Prop] : never;
+};
+
+type AAA = GetType<"👊🏻">;
+
+export type WhoWins<
     A extends RockPaperScissors,
     B extends RockPaperScissors
 > = Results[B] extends R<B, infer Lose, infer Win>

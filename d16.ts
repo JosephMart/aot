@@ -4,7 +4,7 @@ type FindSantaRow<Row> = Row extends [...infer A, infer B]
         : FindSantaRow<A>
     : never;
 
-type FindSanta<Matrix extends unknown[]> = {
+export type FindSanta<Matrix extends unknown[]> = {
     [Prop in keyof Matrix]: FindSantaRow<Matrix[Prop]> extends never
         ? never
         : [

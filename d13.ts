@@ -1,4 +1,4 @@
-type DayCounter<
+export type DayCounter<
     Start extends number,
     End extends number,
     FoundLowerBound extends boolean = false,

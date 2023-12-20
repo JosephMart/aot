@@ -7,5 +7,4 @@ type Parse<
         : [Pre]
     : [Base];
 
-type DecipherNaughtyList<Base extends string> = Parse<Base, "/">[number];
-type d14 = DecipherNaughtyList<"timmy/jimmy/bobby/foo">;
+export type DecipherNaughtyList<Base extends string> = Parse<Base, "/">[number];
